@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dora's Game Center - Leaderboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec6fa5",
+                        "secondary": "#95c9ec",
+                        "background-light": "#f8f6f7",
+                        "background-dark": "#211118",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Spline Sans", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 justify-between">
+<div class="flex size-10 items-center justify-center rounded-full bg-secondary/20 text-secondary">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center font-display">Dora's Game Center</h2>
+<div class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Prominent Title -->
+<div class="px-6 pt-6 pb-2 text-center">
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-bold leading-tight tracking-tight font-display mb-2">Leaderboard</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Top Snake Masters of the Week</p>
+</div>
+<!-- Game Selection Highlight -->
+<div class="px-4 py-4">
+<div class="bg-secondary/10 dark:bg-secondary/5 rounded-xl p-4 flex items-center gap-4 border border-secondary/20">
+<div class="size-14 rounded-lg bg-secondary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-3xl">sports_esports</span>
+</div>
+<div>
+<h3 class="font-bold text-lg text-slate-800 dark:text-slate-100 leading-none">Greedy Snake</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Global Competition</p>
+</div>
+<button class="ml-auto bg-primary text-white text-xs font-bold px-4 py-2 rounded-full shadow-md shadow-primary/20">
+                    PLAY
+                </button>
+</div>
+</div>
+<!-- Toggle Tabs -->
+<div class="px-4 mb-6">
+<div class="flex bg-slate-200/50 dark:bg-slate-800/50 p-1 rounded-full">
+<button class="flex-1 py-2.5 text-sm font-bold rounded-full text-slate-500 dark:text-slate-400">Daily</button>
+<button class="flex-1 py-2.5 text-sm font-bold rounded-full bg-white dark:bg-slate-700 text-primary shadow-sm">Weekly</button>
+<button class="flex-1 py-2.5 text-sm font-bold rounded-full text-slate-500 dark:text-slate-400">All-time</button>
+</div>
+</div>
+<!-- Podium / Top 3 -->
+<div class="flex items-end justify-center gap-4 px-4 mb-8 pt-4">
+<!-- Rank 2 -->
+<div class="flex flex-col items-center flex-1">
+<div class="relative mb-2">
+<div class="size-16 rounded-full border-4 border-secondary overflow-hidden bg-slate-200">
+<img alt="Avatar of user rank 2" class="w-full h-full object-cover" data-alt="Cute cartoon boy avatar for second rank player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACTcjpn_xjvjqucAJoe0y_Wpsk3SNQtBESpFYAKC_bKc8sSDCHEhTHKRTGQmQraa_bn6VaqQiKr3VB6bPy6X6mbhxp5QyDrBOqSolvL4k_bZVbyn84qnPZv0mBJ6Pvdosu8mUyR-UFeH-zFPK2bu9phEC4B5wvKByI046Gy3ST7hTvAE6c1-OshnJD0TGBg-jz2FLqs6BkUjIyZwtizG7x5GWyT-iBPRmd3nTF-RbcC_XdbNXlp9C8HkNK5MCvNzJX7S2o8889lto"/>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2nd</div>
+</div>
+<p class="text-xs font-bold text-slate-700 dark:text-slate-200 truncate w-full text-center">Leo_Z</p>
+<p class="text-xs font-medium text-secondary">18,240</p>
+</div>
+<!-- Rank 1 -->
+<div class="flex flex-col items-center flex-1 -mt-4">
+<div class="relative mb-2 scale-110">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-yellow-400">
+<span class="material-symbols-outlined text-3xl">workspace_premium</span>
+</div>
+<div class="size-20 rounded-full border-4 border-primary overflow-hidden bg-slate-200 shadow-xl shadow-primary/20">
+<img alt="Avatar of user rank 1" class="w-full h-full object-cover" data-alt="Cute cartoon girl avatar for first rank player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnCkvu2jD1-vOol455Bm8yd0yDxPMGvKjUNh9OlnFw409U2Xq8QG1uh2gCJBUEJy-omqld-6fhtBzrJyt3PmRRApEeIzdPhXlA8f_DH_4g9Qnx_OZlYggBhR5IJNVx2pxSapzspNo83yg6Km_olobABnPDDjyJY5qeUHUcU9y5W-hsb0b2RU_fQYE5t_bc2gyDPfIQFjCJq2IjwtzGZXmgu4JTPbqe-UN9BXkwnsjvvbtDxxwuTquxzWlSrlogyaVfxltRwn_26uc"/>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">1st</div>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-slate-100 truncate w-full text-center">Dora_The_Best</p>
+<p class="text-sm font-bold text-primary">24,500</p>
+</div>
+<!-- Rank 3 -->
+<div class="flex flex-col items-center flex-1">
+<div class="relative mb-2">
+<div class="size-16 rounded-full border-4 border-orange-300 overflow-hidden bg-slate-200">
+<img alt="Avatar of user rank 3" class="w-full h-full object-cover" data-alt="Cute cartoon boy avatar for third rank player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIp_mNfM5FJfSnk-DaP6bkFIlL0pxr8FzrGu_xp1FgzHM3_h1wXx8Jtj4TCcgpP5FZNBrLnqT_NqDfBsAXHeA7BIvrpq0ULqo-0wQl2DnGIzVUKYT8_uvn4OU2YxWKMFjaEM4-ngcf1lE5vVUr2da1Tv8FOQnvo7PPRiUzIqsihmi7BDnhcG0Mb-RJTzIJo-Oh8UiSySS3l8HRHsYlsHnI1W7AmMCnGhpBp8vStW2znlLX_RU7k05bDb6Wu-e3D1tUvicpx6Oe5LE"/>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-orange-300 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3rd</div>
+</div>
+<p class="text-xs font-bold text-slate-700 dark:text-slate-200 truncate w-full text-center">PixelKing</p>
+<p class="text-xs font-medium text-orange-400">15,900</p>
+</div>
+</div>
+<!-- Ranking List -->
+<div class="px-4 space-y-3">
+<!-- Item 4 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="text-slate-400 font-bold w-4 text-center">4</span>
+<div class="size-10 rounded-full bg-slate-100 overflow-hidden">
+<img alt="User 4 avatar" class="w-full h-full object-cover" data-alt="Cartoon avatar of a girl player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNo0b8j5aHBxGWF-uaf3HhtUORbfTI_7kzaoDLAlAWYvzadsQtt7hTP09_7IMJgY7lW7ehja1r9yKujFFLYjcEP_SXApv4W92oaJEa-IoATnQe6-HvQxOkPWZ4v-T_a-hROnc3fx6f02ynOZHsF3EeHqU3MMg2kWV9Pg413CL6sfnYZhw27RMhtO3NCy-3Gf0frYC5K_408KbwNwmga5JX2gAn-I2LQjBq3KGCV0G4zuoEyhWnvWKCOAP1Z2mYBUuxwvUVJTzSoZg"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Maya_Rose</h4>
+<p class="text-[10px] text-slate-400">Level 42 Master</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">12,400</p>
+<p class="text-[10px] text-green-500 font-bold">▲ 2</p>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="text-slate-400 font-bold w-4 text-center">5</span>
+<div class="size-10 rounded-full bg-slate-100 overflow-hidden">
+<img alt="User 5 avatar" class="w-full h-full object-cover" data-alt="Cartoon avatar of a boy player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1gfU_RIP1SEWA-NS66uekeKFZ_x_ln8cltvTGJhdqtLVDdr5fTUvWmC4rpv_e-hoo6AUsy14ko3_n6IlYKuKm3DllDv-yauRBM72Yw9O7qi0rUtjRjAIHf77dn3mKHT52jgAkdQy7-2fGsP4rh16SQxZ-yxiD3nY1ppQzbL8V3XrPl_tASqQ5r73_Obs_YRMfJwr5FdQYsF5WTF0TH4DZoA4vS12_PCk6wwHRufPFA0Gj6f63ObdOJvGVIO1hUjAVFhuurUjFf5M"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">GhostRider</h4>
+<p class="text-[10px] text-slate-400">Level 38 Veteran</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">10,850</p>
+<p class="text-[10px] text-slate-400 font-bold">—</p>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="text-slate-400 font-bold w-4 text-center">6</span>
+<div class="size-10 rounded-full bg-slate-100 overflow-hidden">
+<img alt="User 6 avatar" class="w-full h-full object-cover" data-alt="Cartoon avatar of a girl player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3rh7w-yB3NHKkQNM93gn654ofUhJjXikT2IBR9p2Fw_tIa9J5ybQIAtkzj0ejGm8zgM4GG9HqGJuQ2cFuWSMe_pTUycNWbLoAlc3Q8t9fAY8FoogWD796gn6jVq03PIePLaXJR-CIbeyVhlohSHaOrxy8Ei15myOBpiLkaWpmaX6s9UIffI7tahRrbdwgc3xnOGTs48ADPtWiBqcym-ZWvTET7-sMC2694knW0xq1FcVOom9REzGGaOLH5ACg_GIxbhlEzHLpOlo"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">SunnyDay</h4>
+<p class="text-[10px] text-slate-400">Level 31 Pro</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">9,200</p>
+<p class="text-[10px] text-red-500 font-bold">▼ 1</p>
+</div>
+</div>
+<!-- Item 7 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="text-slate-400 font-bold w-4 text-center">7</span>
+<div class="size-10 rounded-full bg-slate-100 overflow-hidden">
+<img alt="User 7 avatar" class="w-full h-full object-cover" data-alt="Cartoon avatar of a boy player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJWhPEw42HHHQ2ZNmlT94KDXm8W25ER4IXyNGRYm0HV1FCRKUM6EtbhHMgW9UQd-yBdkQuddJXVoDkhPZt4xPEbQVx6KUpEMnWxW2xFDKmAo5ldCgqPIZoXwCHt0XoTVvFcGjCYtovdkgKlVmFEQqzecBW1K8mh7gpdzGJf3geL3j3GD3bE_62XuEnFCm38dvq1E9cGqW6w0DXXpqAzdVEdipb0uJqCpBzr2cdkXKtXSrgvFGm2119JdwdzTNIsZVacPF37I_7JpY"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Alex_Storm</h4>
+<p class="text-[10px] text-slate-400">Level 29 Challenger</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">8,750</p>
+<p class="text-[10px] text-green-500 font-bold">▲ 4</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">sports_esports</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Games</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">trophy</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Rankings</span>
+<div class="w-1 h-1 bg-primary rounded-full"></div>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Settings</span>
+</a>
+</nav>
+<!-- My Rank Sticky Button -->
+<div class="fixed bottom-24 left-0 right-0 px-4 pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto bg-primary text-white rounded-full py-3 px-6 flex items-center justify-between shadow-lg shadow-primary/30">
+<div class="flex items-center gap-3">
+<span class="font-bold">#142</span>
+<div class="size-6 rounded-full bg-white/20 overflow-hidden border border-white/40">
+<img alt="Current User Avatar" class="w-full h-full object-cover" data-alt="Your own cartoon avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEPP6Coyy6rISUmKaasgTOpIJ8WVokYFrr2V9CdBLvbz_JoQPdFDurYFIoCQFLteRFTzPP4smHip5uhJ3SvCv1NNrr83y_rsMzFpePHPWwp4R9Th5WiKKaxwEIoQ_b27tr_98XBozPBLJCypHx8UHjDLRGvAMzeayDG_Hndu5k_3SuUak3eE3GcJuOSPzI3Jfj9gM6QzPeZlCoHWCjXDVTWfArbOEU49J79oSXxBOlCYrmLw2a1nzGPC3FywVqQ_N4JVuyi19WJpY"/>
+</div>
+<span class="text-sm font-bold">My Rank</span>
+</div>
+<span class="font-bold">2,140 pts</span>
+</div>
+</div>
+</body></html>

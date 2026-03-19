@@ -1,230 +1,198 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>遊戲中心 | Game Center</title>
-    <style>
-        :root {
-            --bg-color: #1a1a2e;
-            --grid-color: #16213e;
-            --snake-head: #0f3460;
-            --snake-body: #4ecca3;
-            --food-color: #e94560;
-            --text-color: #eeeeee;
-            --accent-color: #4ecca3;
-            --mouse-color: #e94560;
-        }
 
-        * {
-            box-sizing: border-box;
-            touch-action: manipulation;
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>dora's Game Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec6fa5",
+                        "secondary": "#95c9ec",
+                        "background-light": "#f8f6f7",
+                        "background-dark": "#211118",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
         }
-
+    </script>
+<style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: 'Spline Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .container {
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            padding: 20px;
+        .cute-shadow {
+            box-shadow: 0 10px 25px -5px rgba(149, 201, 236, 0.3);
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 3rem;
-            text-shadow: 0 0 15px var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .game-card {
-            background: var(--grid-color);
-            border-radius: 20px;
-            padding: 30px;
-            text-decoration: none;
-            color: var(--text-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 250px;
-        }
-
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-card.snake {
-            border-color: var(--accent-color);
-        }
-
-        .game-card.mouse {
-            border-color: var(--mouse-color);
-        }
-
-        .game-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .game-card.snake .game-icon {
-            color: var(--accent-color);
-            text-shadow: 0 0 15px var(--accent-color);
-        }
-
-        .game-card.mouse .game-icon {
-            color: var(--mouse-color);
-            text-shadow: 0 0 15px var(--mouse-color);
-        }
-
-        .game-title {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .game-description {
-            font-size: 1rem;
-            color: #ccc;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .play-btn {
-            padding: 12px 30px;
-            font-size: 1.2rem;
-            background-color: transparent;
-            color: var(--text-color);
-            border: 2px solid;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .game-card.snake .play-btn {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .game-card.mouse .play-btn {
-            border-color: var(--mouse-color);
-            color: var(--mouse-color);
-        }
-
-        .play-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: scale(1.05);
-        }
-
-        .instructions {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 40px;
-            text-align: left;
-        }
-
-        .instructions h3 {
-            color: var(--accent-color);
-            margin-top: 0;
-        }
-
-        footer {
-            margin-top: 40px;
-            color: #666;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .game-card {
-                padding: 20px;
-            }
+        .pink-shadow {
+            box-shadow: 0 4px 14px 0 rgba(236, 111, 165, 0.39);
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>遊戲中心</h1>
-            <div class="subtitle">選擇一個遊戲開始遊玩</div>
-        </header>
-
-        <div class="games-grid">
-            <a href="snake_html" class="game-card snake">
-                <div class="game-icon">🐍</div>
-                <div class="game-title">霓虹貪吃蛇</div>
-                <div class="game-description">
-                    經典的貪吃蛇遊戲，現代霓虹風格設計。<br>
-                    使用方向鍵或WASD控制蛇的移動，盡可能多吃食物獲得高分！
-                </div>
-                <div class="play-btn">開始遊戲</div>
-            </a>
-
-            <a href="mouse.html" class="game-card mouse">
-                <div class="game-icon">🐭</div>
-                <div class="game-title">老鼠遊戲</div>
-                <div class="game-description">
-                    老鼠主題遊戲頁面。<br>
-                    點擊進入探索老鼠的世界！
-                </div>
-                <div class="play-btn">進入遊戲</div>
-            </a>
-        </div>
-
-        <div class="instructions">
-            <h3>遊戲說明</h3>
-            <p><strong>貪吃蛇遊戲：</strong> 控制蛇移動並吃掉食物，每吃一個食物蛇身會變長，分數增加。避免撞到牆壁或自己的身體。</p>
-            <p><strong>控制方式：</strong> 桌面版使用方向鍵或WASD，手機版使用屏幕上的虛擬按鈕。空格鍵可暫停遊戲。</p>
-            <p><strong>老鼠遊戲：</strong> 這是一個老鼠主題的遊戲頁面，點擊上方卡片進入探索。</p>
-        </div>
-
-        <footer>
-            <p>© 2025 遊戲中心 | 所有遊戲僅供娛樂使用</p>
-        </footer>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#1b0e14] dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full max-w-[430px] mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-gray-100 dark:border-zinc-800">
+<!-- Header Section -->
+<header class="flex items-center bg-white dark:bg-zinc-900 px-6 pt-12 pb-4 justify-between sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="size-10 shrink-0 bg-secondary rounded-full flex items-center justify-center text-white pink-shadow">
+<span class="material-symbols-outlined">videogame_asset</span>
+</div>
+<h2 class="text-[#1b0e14] dark:text-white text-xl font-bold leading-tight tracking-tight">dora's Game Center</h2>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-secondary/10 dark:bg-secondary/20 text-secondary">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<main class="flex-1">
+<!-- Hero Welcome Card -->
+<div class="@container px-4 py-4">
+<div class="relative bg-gradient-to-br from-secondary to-primary/80 rounded-xl min-h-[180px] overflow-hidden flex flex-col justify-end p-6 cute-shadow" data-alt="Abstract pastel pink and blue gradient pattern" style="background-image: linear-gradient(135deg, #95c9ec 0%, #ec6fa5 100%);">
+<div class="absolute top-4 right-4 opacity-20">
+<span class="material-symbols-outlined text-[80px] text-white">sports_esports</span>
+</div>
+<div class="relative z-10">
+<p class="text-white text-sm font-medium uppercase tracking-widest opacity-90 mb-1">Play and Win</p>
+<h1 class="text-white text-3xl font-bold leading-tight">Welcome back!</h1>
+<p class="text-white/80 text-sm mt-1 font-display">Ready for a new high score?</p>
+</div>
+</div>
+</div>
+<!-- Categories / Quick Links -->
+<div class="flex gap-4 overflow-x-auto px-4 py-2 no-scrollbar">
+<button class="px-5 py-2 bg-primary text-white rounded-full text-sm font-bold whitespace-nowrap pink-shadow">Top Picks</button>
+<button class="px-5 py-2 bg-white dark:bg-zinc-800 text-zinc-500 rounded-full text-sm font-medium whitespace-nowrap">Arcade</button>
+<button class="px-5 py-2 bg-white dark:bg-zinc-800 text-zinc-500 rounded-full text-sm font-medium whitespace-nowrap">Puzzle</button>
+<button class="px-5 py-2 bg-white dark:bg-zinc-800 text-zinc-500 rounded-full text-sm font-medium whitespace-nowrap">Action</button>
+</div>
+<h3 class="text-[#1b0e14] dark:text-white text-xl font-bold leading-tight tracking-tight px-6 pb-4 pt-6">Popular Games</h3>
+<!-- Game Grid -->
+<div class="grid grid-cols-2 gap-4 px-4 pb-10">
+<!-- Greedy Snake Card -->
+<div class="flex flex-col bg-white dark:bg-zinc-900 p-3 rounded-xl cute-shadow transition-transform active:scale-95">
+<div class="w-full bg-secondary/20 aspect-square rounded-lg mb-3 bg-cover bg-center" data-alt="Illustration of a cute green snake in a garden" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDd6tlWfEu4sROfLYBrjJn8fuwBi4HpuNW56xseJYl6z7y4JmwgDOc3huYsfXWznNh1c_vcIhIlTCQdbNnSInVw3RJ_7JOAyP_7eh47h6z78CxibiHsNgG86pwR2khKhtTpn6n5LVbYSso0ZUecVnjqcL0R-cXsyC8CYpxbufRp4Ds3LSK3sjSa6T61IBub4Aik7OosnqgxOMkrv2TUc-V4-eMyO3MrhUHiB-ugB5kkhj6892EdrtPwkvE3Hrzf4rfV9ArXoKNsMys");'>
+</div>
+<div class="flex flex-col gap-1 mb-3">
+<p class="text-[#1b0e14] dark:text-white text-base font-bold leading-tight truncate">Greedy Snake (貪食蛇)</p>
+<p class="text-[#964f6e] dark:text-primary/70 text-xs font-medium">hello</p>
+</div>
+<a href="snake.html" class="w-full py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold pink-shadow inline-flex items-center justify-center">
+                        Start
+                    </a>
+</div>
+<!-- Puzzle Pop Card -->
+<div class="flex flex-col bg-white dark:bg-zinc-900 p-3 rounded-xl cute-shadow transition-transform active:scale-95">
+<div class="w-full bg-secondary/20 aspect-square rounded-lg mb-3 bg-cover bg-center" data-alt="Colorful bubbles and puzzle pieces background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsIaq29tk979wcAfWWLLFoYE1ls5ZfoNKR18g3QlEyauHquMIXZATVSZB11Uajj9kI_-Uxu85yh_VWa8NbxYk5Ac3rrcZ0eABozBYswB8rkEfEAuBA4JWXAxlIuJ6bJZFMZcRWtulEAR0EWKTo8vHj2XFDUKW9rIkMr8mm6_i4cqclXvmMGyoXT6tiMb4Ig8zKnJ7lwMCeCxkN18foxgPvl63kdLytJFfw80jUzil0_eb3kHbw1SW1L4fu2Ish8x7y8LAcwM0WcK8");'>
+</div>
+<div class="flex flex-col gap-1 mb-3">
+<p class="text-[#1b0e14] dark:text-white text-base font-bold leading-tight truncate">Puzzle Pop</p>
+<p class="text-[#964f6e] dark:text-primary/70 text-xs font-medium">Pop the bubbles</p>
+</div>
+<button class="w-full py-2 bg-primary/20 text-primary rounded-full text-sm font-bold">
+                        Start
+                    </button>
+</div>
+<!-- Cloud Jump Card -->
+<div class="flex flex-col bg-white dark:bg-zinc-900 p-3 rounded-xl cute-shadow transition-transform active:scale-95">
+<div class="w-full bg-secondary/20 aspect-square rounded-lg mb-3 bg-cover bg-center" data-alt="Cute white clouds in a blue sky" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2fSfz8C5K9yrx9ubf-lTPRPnzIrcyDN8hYkbqlYiYNiFuw8OmFoSVEcKF12-zyjYUPADsYKWWhOAiuUKv7ZdIVOmNX_0pIGrc9j2mEJBCl6qQKQUdNVsGdi5Q_9DD3pVQmLxKyfhtxQO2nmXlhF5D34gJHaSZjUv1Xi-BLauCGVLYUvEWPa7y6uIpiXKbmcS9KWqsLRdxmZxi5D8u7QKxMyKdgCH3Xsxlg4RTEt5NvWwvMSLn9EBsKHydOiSdD7AwHxlXZMN6zlA");'>
+</div>
+<div class="flex flex-col gap-1 mb-3">
+<p class="text-[#1b0e14] dark:text-white text-base font-bold leading-tight truncate">Cloud Jump</p>
+<p class="text-[#964f6e] dark:text-primary/70 text-xs font-medium">Reach the stars</p>
+</div>
+<button class="w-full py-2 bg-primary/20 text-primary rounded-full text-sm font-bold">
+                        Start
+                    </button>
+</div>
+<!-- Candy Dash Card -->
+<div class="flex flex-col bg-white dark:bg-zinc-900 p-3 rounded-xl cute-shadow transition-transform active:scale-95">
+<div class="w-full bg-secondary/20 aspect-square rounded-lg mb-3 bg-cover bg-center" data-alt="Shiny colorful candies and sweets pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9vtiji5IHu_82p1g4o2ASZFdj9ZCmZGaftWMwhjR9xmdl7P2R7vLLntAR_0zRcVT99aQqsUDN6gbBeWJ-66SPvEadfIvhBT6FpLpfGqnXVMr843R-w0yiSrdoUvyzBP06F9COZjAoQHIMONV7DjOUZlZYM4Jrr7QOSpYqlS5Ou4NHICpPoC_Eg5CLxFyGRtaezEPuGuFAFfi6E-GhtQ1u4mLdanbep_eRRIhiwtJZsnPRpzqvKE_iCJgM098us_vz_oyX8RqeLoM");'>
+</div>
+<div class="flex flex-col gap-1 mb-3">
+<p class="text-[#1b0e14] dark:text-white text-base font-bold leading-tight truncate">Candy Dash</p>
+<p class="text-[#964f6e] dark:text-primary/70 text-xs font-medium">Sweet match 3</p>
+</div>
+<button class="w-full py-2 bg-primary/20 text-primary rounded-full text-sm font-bold">
+                        Start
+                    </button>
+</div>
+<!-- Mouse Game Card -->
+<div class="flex flex-col bg-white dark:bg-zinc-900 p-3 rounded-xl cute-shadow transition-transform active:scale-95">
+    <div class="w-full bg-secondary/20 aspect-square rounded-lg mb-3 bg-cover bg-center flex items-center justify-center" data-alt="Cute mouse illustration" style='background-color: #f0b4d4;'>
+        <span class="text-5xl">🐭</span>
     </div>
-</body>
-</html>
+    <div class="flex flex-col gap-1 mb-3">
+        <p class="text-[#1b0e14] dark:text-white text-base font-bold leading-tight truncate">Mouse Game</p>
+        <p class="text-[#964f6e] dark:text-primary/70 text-xs font-medium">Catch the cheese</p>
+    </div>
+    <a href="mouse.html" class="w-full py-2 bg-primary/20 text-primary rounded-full text-sm font-bold inline-flex items-center justify-center">
+        Start
+    </a>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (iOS Style) -->
+<nav class="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-lg border-t border-gray-100 dark:border-zinc-800 px-8 py-4 sticky bottom-0 flex justify-between items-center">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined font-bold">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-400">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-[10px] font-medium">Rankings</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-400">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</nav>
+<!-- Footer -->
+<footer class="flex flex-col gap-4 px-6 py-10 text-center bg-secondary/10 dark:bg-zinc-900">
+<div class="flex justify-center items-center gap-2">
+<div class="h-[1px] w-8 bg-primary/30"></div>
+<p class="text-primary text-xl font-bold tracking-tighter" style="font-family: 'Spline Sans';">dora</p>
+<div class="h-[1px] w-8 bg-primary/30"></div>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-4">
+<a class="text-zinc-400 text-xs font-medium hover:text-primary" href="#">Privacy</a>
+<a class="text-zinc-400 text-xs font-medium hover:text-primary" href="#">Terms</a>
+<a class="text-zinc-400 text-xs font-medium hover:text-primary" href="#">Help Center</a>
+</div>
+<div class="flex justify-center gap-4 mt-2">
+<div class="text-secondary size-6">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</div>
+<div class="text-secondary size-6">
+<span class="material-symbols-outlined text-xl">star</span>
+</div>
+</div>
+<div class="pb-10"></div>
+</footer>
+</div>
+</body></html>

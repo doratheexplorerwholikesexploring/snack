@@ -1,9 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
-    <title>Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>遊戲中心 | Game Center</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --grid-color: #16213e;
+            --snake-head: #0f3460;
+            --snake-body: #4ecca3;
+            --food-color: #e94560;
+            --text-color: #eeeeee;
+            --accent-color: #4ecca3;
+            --mouse-color: #e94560;
+        }
+
+        * {
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            text-shadow: 0 0 15px var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background: var(--grid-color);
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card.snake {
+            border-color: var(--accent-color);
+        }
+
+        .game-card.mouse {
+            border-color: var(--mouse-color);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .game-card.snake .game-icon {
+            color: var(--accent-color);
+            text-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .game-card.mouse .game-icon {
+            color: var(--mouse-color);
+            text-shadow: 0 0 15px var(--mouse-color);
+        }
+
+        .game-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .game-description {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .play-btn {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .game-card.snake .play-btn {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .game-card.mouse .play-btn {
+            border-color: var(--mouse-color);
+            color: var(--mouse-color);
+        }
+
+        .play-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .instructions h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Test Page</h1>
+    <div class="container">
+        <header>
+            <h1>遊戲中心</h1>
+            <div class="subtitle">選擇一個遊戲開始遊玩</div>
+        </header>
+
+        <div class="games-grid">
+            <a href="snake_html" class="game-card snake">
+                <div class="game-icon">🐍</div>
+                <div class="game-title">霓虹貪吃蛇</div>
+                <div class="game-description">
+                    經典的貪吃蛇遊戲，現代霓虹風格設計。<br>
+                    使用方向鍵或WASD控制蛇的移動，盡可能多吃食物獲得高分！
+                </div>
+                <div class="play-btn">開始遊戲</div>
+            </a>
+
+            <a href="mouse.html" class="game-card mouse">
+                <div class="game-icon">🐭</div>
+                <div class="game-title">老鼠遊戲</div>
+                <div class="game-description">
+                    老鼠主題遊戲頁面。<br>
+                    點擊進入探索老鼠的世界！
+                </div>
+                <div class="play-btn">進入遊戲</div>
+            </a>
+        </div>
+
+        <div class="instructions">
+            <h3>遊戲說明</h3>
+            <p><strong>貪吃蛇遊戲：</strong> 控制蛇移動並吃掉食物，每吃一個食物蛇身會變長，分數增加。避免撞到牆壁或自己的身體。</p>
+            <p><strong>控制方式：</strong> 桌面版使用方向鍵或WASD，手機版使用屏幕上的虛擬按鈕。空格鍵可暫停遊戲。</p>
+            <p><strong>老鼠遊戲：</strong> 這是一個老鼠主題的遊戲頁面，點擊上方卡片進入探索。</p>
+        </div>
+
+        <footer>
+            <p>© 2025 遊戲中心 | 所有遊戲僅供娛樂使用</p>
+        </footer>
+    </div>
 </body>
 </html>
